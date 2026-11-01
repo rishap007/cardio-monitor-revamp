@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f7">
+  <meta name="description" content="A machine learning demonstration for exploring heart health data.">
+  <title>Cardio Monitor | Risk Demo</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="{{ url_for('home') }}" aria-label="Cardio Monitor home">
+        <span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span>
+      </a>
+      <div class="nav-links"><a class="nav-link" href="{{ url_for('about') }}">About this demo</a><span class="nav-status"><i></i> Local demo</span></div>
+    </nav>
+  </header>
+
+  <main class="wrap page-main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <p class="eyebrow"><span class="eyebrow-line"></span> A HEART HEALTH EXPLORATION</p>
+        <h1 id="hero-title">Understand the signals.<br><span>Start a conversation.</span></h1>
+        <p class="hero-text">Explore how a machine learning model reads a set of health indicators. Enter the values below to see its demonstration output.</p>
+        <div class="hero-note"><span class="note-icon" aria-hidden="true">✳</span><span><strong>For learning purposes</strong><br>This tool is not a clinical assessment or a substitute for medical advice.</span></div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-glow"></div><div class="pulse-card"><div class="pulse-top"><span class="pulse-dot"></span><span>HEART RHYTHM</span><span class="pulse-live">DEMO</span></div>
+          <svg class="pulse-svg" viewBox="0 0 440 120" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 61h78l22-1 15-24 25 64 25-82 29 70 20-27h38l13-16 20 31 19-15h64" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 61h78l22-1 15-24 25 64 25-82 29 70 20-27h38l13-16 20 31 19-15h64" stroke="currentColor" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity=".09"/></svg>
+          <div class="pulse-bottom"><span>HEALTH DATA</span><span>13 INPUTS <b>·</b> 1 MODEL</span></div>
+        </div>
+        <div class="art-caption"><span class="caption-icon">+</span><span>Small signals can guide<br><strong>better questions.</strong></span></div>
+      </div>
+    </section>
+
+    <section class="form-card" aria-labelledby="form-title">
+      <div class="form-heading"><div><p class="eyebrow">THE MODEL INPUT</p><h2 id="form-title">Your health profile</h2><p class="form-subtitle">Enter the measurements and results requested below.</p></div><span class="step-badge">01 <span>/ 01</span></span></div>
+      <form action="{{ url_for('predict') }}" method="post" class="profile-form">
+        <div class="form-section-title"><span class="section-number">01</span><div><h3>Basic information</h3><p>Personal and resting measurements</p></div></div>
+        <div class="field-grid">
+          <label class="field"><span>Name <small>Optional</small></span><input type="text" name="name" autocomplete="name" maxlength="80" placeholder="How should we address you?"></label>
+          <label class="field"><span>Age <em>Required</em></span><div class="input-unit"><input type="number" name="age" min="1" max="120" required placeholder="e.g. 45"><span>years</span></div></label>
+          <label class="field"><span>Sex <em>Required</em></span><select name="sex" required><option value="" selected disabled>Select an option</option><option value="Male">Male</option><option value="Female">Female</option></select></label>
+          <label class="field"><span>Resting blood pressure <em>Required</em></span><div class="input-unit"><input type="number" name="trestbps" min="40" max="300" required placeholder="e.g. 120"><span>mmHg</span></div></label>
+          <label class="field"><span>Serum cholesterol <em>Required</em></span><div class="input-unit"><input type="number" name="chol" min="50" max="700" required placeholder="e.g. 200"><span>mg/dL</span></div></label>
+          <label class="field"><span>Maximum heart rate <em>Required</em></span><div class="input-unit"><input type="number" name="thalach" min="30" max="250" required placeholder="e.g. 160"><span>bpm</span></div></label>
+        </div>
+
+        <div class="form-section-title section-spaced"><span class="section-number">02</span><div><h3>Clinical indicators</h3><p>Select the recorded result that best matches each field.</p></div></div>
+        <div class="field-grid">
+          <label class="field"><span>Chest pain type <em>Required</em></span><select name="cp" required><option value="" selected disabled>Select an option</option><option value="Typical angina">Typical angina</option><option value="Atypical angina">Atypical angina</option><option value="Non-anginal pain">Non-anginal pain</option><option value="Asymptomatic">Asymptomatic</option></select></label>
+          <label class="field"><span>Resting ECG <em>Required</em></span><select name="restecg" required><option value="" selected disabled>Select an option</option><option value="Nothing to note">Nothing to note</option><option value="ST-T Wave abnormality">ST-T wave abnormality</option><option value="Possible or definite left ventricular hypertrophy">Possible or definite left ventricular hypertrophy</option></select></label>
+          <label class="field"><span>Fasting blood sugar above 120 mg/dL? <em>Required</em></span><select name="fbs" required><option value="" selected disabled>Select an option</option><option value="Yes">Yes</option><option value="No">No</option></select></label>
+          <label class="field"><span>Exercise-induced angina? <em>Required</em></span><select name="exang" required><option value="" selected disabled>Select an option</option><option value="Yes">Yes</option><option value="No">No</option></select></label>
+          <label class="field"><span>ST depression (oldpeak) <em>Required</em></span><input type="number" name="oldpeak" min="0" max="10" step="any" required placeholder="e.g. 1.2"></label>
+          <label class="field"><span>Peak exercise ST slope <em>Required</em></span><select name="slope" required><option value="" selected disabled>Select an option</option><option value="Upsloping: better heart rate with excercise(uncommon)">Upsloping</option><option value="Flatsloping: minimal change(typical healthy heart)">Flat</option><option value="Downsloping: signs of unhealthy heart">Downsloping</option></select></label>
+          <label class="field"><span>Major vessels (ca) <em>Required</em></span><select name="ca" required><option value="" selected disabled>Select a value</option><option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option></select></label>
+          <label class="field"><span>Thalassemia result <em>Required</em></span><select name="thal" required><option value="" selected disabled>Select an option</option><option value="normal">Normal</option><option value="fixed defect: used to be defect but ok now">Fixed defect</option><option value="reversable defect: no proper blood movement when excercising">Reversible defect</option></select></label>
+        </div>
+        <div class="form-actions"><p><span class="lock-icon" aria-hidden="true">⌑</span> Your entries are used for this prediction and are not stored by this app.</p><button class="button button-primary" type="submit">Generate demo result <span aria-hidden="true">→</span></button></div>
+      </form>
+    </section>
+    <section class="bottom-disclaimer"><span class="disclaimer-mark">i</span><p><strong>Important:</strong> This machine learning demonstration is trained on a small dataset. Its output should not be used to make health decisions. Talk with a qualified healthcare professional about personal concerns.</p><a href="{{ url_for('about') }}">Learn about the demo <span aria-hidden="true">↗</span></a></section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a><span>Educational machine learning demo</span><span>© 2026 Cardio Monitor</span></div></footer>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f7">
+  <title>About the demo | Cardio Monitor</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header class="site-header"><nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a>
+    <div class="nav-links"><a class="nav-link" href="{{ url_for('home') }}">Prediction demo</a><span class="nav-status"><i></i> Local demo</span></div>
+  </nav></header>
+  <main class="wrap subpage-main">
+    <section class="page-intro"><p class="eyebrow"><span class="eyebrow-line"></span> ABOUT THE PROJECT</p><h1>A learning tool for exploring health data.</h1><p>Cardio Monitor is a small machine learning demonstration. It accepts a set of heart health measurements and shows how a classifier trained on a sample dataset responds to them.</p></section>
+    <section class="content-card" aria-label="Project information">
+      <p>The model was created for educational exploration. Its dataset is limited, its output is only a model prediction, and it has not been evaluated for clinical use. It cannot account for a person’s complete medical history, examination, or other context.</p>
+      <div class="info-grid">
+        <article class="info-card"><span class="info-icon" aria-hidden="true">⌁</span><h2>What it uses</h2><p>Thirteen structured fields, such as age, blood pressure, cholesterol, ECG category, and exercise measurements.</p></article>
+        <article class="info-card"><span class="info-icon" aria-hidden="true">◉</span><h2>What it returns</h2><p>A binary classifier output from the included sample model. It is not a probability or a diagnosis.</p></article>
+        <article class="info-card"><span class="info-icon" aria-hidden="true">⌂</span><h2>How data is handled</h2><p>This local demo does not save form submissions. Values are processed to produce the response page.</p></article>
+      </div>
+      <div class="notice-panel"><span aria-hidden="true">ⓘ</span><div><strong>Use with care.</strong> Do not use this demonstration to make health decisions or delay care. For personal questions, speak with a qualified healthcare professional.</div></div>
+    </section>
+    <p class="about-actions"><a class="button button-primary" href="{{ url_for('home') }}">Return to the demo <span aria-hidden="true">→</span></a></p>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a><span>Educational machine learning demo</span><span>© 2026 Cardio Monitor</span></div></footer>
+</body>
+</html>

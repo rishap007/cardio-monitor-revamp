@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f7">
+  <title>Check your entry | Cardio Monitor</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header class="site-header"><nav class="nav wrap" aria-label="Main navigation"><a class="brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a></nav></header>
+  <main class="wrap subpage-main"><section class="content-card error-card"><span class="error-mark" aria-hidden="true">!</span><p class="eyebrow">INPUT NEEDS ATTENTION</p><h1>Check your entries</h1><p>{{ message or "Please complete each required field with a valid value, then try again." }}</p><a class="button button-primary" href="{{ url_for('home') }}">Return to the form <span aria-hidden="true">→</span></a></section></main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a><span>Educational machine learning demo</span><span>© 2026 Cardio Monitor</span></div></footer>
+</body>
+</html>

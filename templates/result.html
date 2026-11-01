@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f8f7">
+  <title>Your demo result | Cardio Monitor</title>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+</head>
+<body>
+  <header class="site-header"><nav class="nav wrap" aria-label="Main navigation">
+    <a class="brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a>
+    <div class="nav-links"><a class="nav-link" href="{{ url_for('about') }}">About this demo</a><span class="nav-status"><i></i> Local demo</span></div>
+  </nav></header>
+  <main class="wrap subpage-main">
+    <article class="result-card">
+      <p class="eyebrow"><span class="eyebrow-line"></span> DEMONSTRATION OUTPUT</p>
+      <div class="result-status {{ 'high' if prediction == 1 else 'low' }}">
+        <span class="result-symbol" aria-hidden="true">{{ '!' if prediction == 1 else '✓' }}</span>
+        <div>
+          <h1>{{ 'Higher likelihood indicated' if prediction == 1 else 'Lower likelihood indicated' }}</h1>
+          <p>{{ 'The model classified this input in the higher likelihood group.' if prediction == 1 else 'The model classified this input in the lower likelihood group.' }}{% if nameofpatient != 'there' %} Thank you, {{ nameofpatient|e }}.{% endif %}</p>
+        </div>
+      </div>
+      <section class="result-explainer"><h2>How to read this result</h2><p>This is a binary output from a machine learning model trained on a small sample dataset. It is not a diagnosis, an individual risk estimate, or medical advice. The model may be wrong and cannot evaluate your complete health context.</p></section>
+      <div class="notice-panel"><span aria-hidden="true">ⓘ</span><div><strong>For demonstration only.</strong> Do not use this result to make health decisions or delay care. Discuss personal concerns with a qualified healthcare professional.</div></div>
+      <div class="result-actions"><a class="button button-primary" href="{{ url_for('home') }}">Try another input <span aria-hidden="true">→</span></a><a class="button button-secondary" href="{{ url_for('about') }}">About this project</a></div>
+    </article>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-inner"><a class="brand footer-brand" href="{{ url_for('home') }}"><span class="brand-mark" aria-hidden="true">♥</span><span>Cardio<span class="brand-light">Monitor</span></span></a><span>Educational machine learning demo</span><span>© 2026 Cardio Monitor</span></div></footer>
+</body>
+</html>
